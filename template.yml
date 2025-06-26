@@ -1,0 +1,84 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: dimastuditsky-set
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 10
+
+Parameters:
+  TableNameParam:
+    Type: String
+    Default: dimastuditsky-set
+
+Resources:
+  TrackTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Ref TableNameParam
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: created_at
+          AttributeType: S
+        - AttributeName: GSI1PK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+        - AttributeName: created_at
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: GSI1PK-created_at-index
+          KeySchema:
+            - AttributeName: GSI1PK
+              KeyType: HASH
+            - AttributeName: created_at
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      BillingMode: PAY_PER_REQUEST
+
+  WebFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: dist
+      Handler: index.handler
+      Environment:
+        Variables:
+          DYNAMO_TABLE_NAME: !Ref TableNameParam
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TableNameParam
+      Events:
+        Web:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: GET
+
+  ApiDomain:
+    Type: AWS::ApiGatewayV2::DomainName
+    Properties:
+      DomainName: dimastuditsky-set.etpotato.dev
+      DomainNameConfigurations:
+        - CertificateArn: arn:aws:acm:eu-north-1:054037108018:certificate/fe662d2c-b0bb-4f0f-a26f-7bca2b4e82c7
+          EndpointType: REGIONAL
+
+  ApiBasePathMapping:
+    Type: AWS::ApiGatewayV2::ApiMapping
+    Properties:
+      DomainName: !Ref ApiDomain
+      ApiId: !Ref ServerlessHttpApi
+      Stage: "$default"
+    DependsOn: # <--- ADDED THIS DEPENDS ON
+      - ServerlessHttpApiApiGatewayDefaultStage # <--- Reference the implicit stage
+
+Outputs:
+  ApiUrl:
+    Description: "HTTP API endpoint URL"
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+  CustomDomainName:
+    Description: "Custom domain name for the HTTP API"
+    Value: !Ref ApiDomain

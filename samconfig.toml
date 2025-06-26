@@ -1,0 +1,11 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "dimastuditsky-set"
+resolve_s3 = true
+s3_prefix = "dimastuditsky-set"
+region = "eu-north-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "TableNameParam=\"dimastuditsky-set\""
+image_repositories = []
