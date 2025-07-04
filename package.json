@@ -4,16 +4,22 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "build": "rm -rf dist && tsc && cp -r assets dist/assets",
-    "start": "node dist/index.js"
+    "build": "rm -rf dist && esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js && cp -r assets dist/assets && cp .env dist/.env",
+    "start": "node dist/index.js",
+    "ctfl:migrate": "ts-node migrations/migrate.ts",
+    "ctfl:seed": "ts-node migrations/seed.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.830.0",
-    "@aws-sdk/lib-dynamodb": "^3.830.0"
+    "contentful": "11.7.5",
+    "dotenv": "17.0.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.0",
     "@types/node": "^14.0.0",
+    "contentful-management": "11.54.1",
+    "contentful-migration": "4.28.6",
+    "esbuild": "0.25.5",
+    "ts-node": "10.9.2",
     "typescript": "^4.0.0"
   },
   "author": "Pavel Mareev",

@@ -1,12 +1,17 @@
 import { Context, Callback, LambdaFunctionURLEvent } from "aws-lambda";
+import dotenv from "dotenv";
 import { ApiHandler } from "./handlers/api-handler";
-import { DynamoRepository } from "./services/repository";
-import { DYNAMO_TABLE_NAME } from "./constants";
 import { HtmlService } from "./services/html";
+import { ContentfulRepository } from "./services/repository/contentful/contentful-repository";
 
-const dynamoRepository = new DynamoRepository(DYNAMO_TABLE_NAME);
+dotenv.config();
+
+const repository = new ContentfulRepository(
+  process.env.CTFL_CDA_TOKEN as string,
+  process.env.CTFL_SPACE_ID as string
+);
 const htmlService = new HtmlService();
-const apiHandler = new ApiHandler(dynamoRepository, htmlService);
+const apiHandler = new ApiHandler(repository, htmlService);
 
 export const handler = (
   event: LambdaFunctionURLEvent,

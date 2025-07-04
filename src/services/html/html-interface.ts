@@ -1,5 +1,5 @@
-import { TrackList } from "../../types";
+import { TrackList, TrackSource } from "../../types";
 
 export interface Html {
-  renderTrackList(trackList: TrackList): Promise<string>;
+  renderTrackList(trackList: TrackList, source?: TrackSource): Promise<string>;
 }

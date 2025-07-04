@@ -1,6 +1,7 @@
 import { LambdaFunctionURLEvent, Context, Callback } from "aws-lambda";
 import { Repository } from "../services/repository";
 import { Html } from "../services/html";
+import { TrackSource } from "../types";
 
 export class ApiHandler {
   constructor(
@@ -14,8 +15,20 @@ export class ApiHandler {
     callback: Callback
   ) {
     try {
-      const trackList = await this.repository.getAll();
-      const htmlResponse = await this.htmlService.renderTrackList(trackList);
+      const source =
+        event.queryStringParameters?.source &&
+        Object.values(TrackSource).includes(
+          event.queryStringParameters.source as TrackSource
+        )
+          ? (event.queryStringParameters.source as TrackSource)
+          : undefined;
+
+      const trackList = await this.repository.getTrackList(source);
+      const htmlResponse = await this.htmlService.renderTrackList(
+        trackList,
+        source
+      );
+
       callback(null, {
         statusCode: 200,
         body: htmlResponse,
