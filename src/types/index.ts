@@ -16,7 +16,9 @@ export type TrackList = {
 };
 
 export const TrackSource = {
+  Spotify: "spotify",
   Soundcloud: "soundcloud",
+  Yandex: "yandex",
   Youtube: "youtube",
 } as const;
 export type TrackSource = (typeof TrackSource)[keyof typeof TrackSource];

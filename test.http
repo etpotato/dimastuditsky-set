@@ -1,11 +1,28 @@
+###
 GET https://dxapb5rhxh.execute-api.eu-north-1.amazonaws.com/
 
 ###
 GET https://dimastuditsky-set.etpotato.dev/
 
 ###
-
 GET https://cdn.contentful.com/spaces/r5p76bnm5g8d/entries
 ?content_type=track
 &fields.url[match]=
-Authorization: Bearer
+Authorization: Bearer {{$dotenv CTFL_CDA_TOKEN}}
+
+###
+GET https://cdn.contentful.com/spaces/r5p76bnm5g8d/entries
+Authorization: Bearer {{$dotenv CTFL_CDA_TOKEN}}
+
+### Spotify Auth
+POST https://accounts.spotify.com/api/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{$dotenv SPOTIFY_CLIENT_ID}}
+&client_secret={{$dotenv SPOTIFY_CLIENT_SECRET}}
+
+### Spotify get playlist
+GET https://api.spotify.com/v1/playlists/62JvJn30H4qIPzslGDy2f2
+Authorization: Bearer {{$dotenv SPOTIFY_ACCESS_TOKEN}}
+

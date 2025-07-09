@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rm -rf dist && esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js && cp -r assets dist/assets && cp .env dist/.env",
     "start": "node dist/index.js",
-    "ctfl:migrate": "ts-node migrations/migrate.ts",
-    "ctfl:seed": "ts-node migrations/seed.ts"
+    "ctfl:migrate": "ts-node src/migrations/migrate.ts",
+    "ctfl:seed": "ts-node src/migrations/seed.ts"
   },
   "dependencies": {
     "contentful": "11.7.5",

@@ -3,6 +3,7 @@ import { Repository } from "../repository-interface";
 import { ContentfulClientApi, createClient } from "contentful";
 import { mapTrack } from "./utils/map-track";
 import { CtflTrack, CtflTrackGroup } from "./contentful-types";
+import { getSourceMatch } from "./utils/get-source-match";
 
 export class ContentfulRepository implements Repository {
   private client: ContentfulClientApi<undefined>;
@@ -16,13 +17,10 @@ export class ContentfulRepository implements Repository {
 
   public async getTrackList(source?: TrackSource): Promise<TrackList> {
     try {
-      const sourceMatch =
-        source === TrackSource.Youtube ? "www.youtube" : source;
-
       const [tracksResponse, groupsResponse] = await Promise.all([
         this.client.getEntries({
           content_type: "track",
-          "fields.url[match]": sourceMatch,
+          "fields.url[match]": getSourceMatch(source),
           limit: 1000,
         }),
         this.client.getEntries({

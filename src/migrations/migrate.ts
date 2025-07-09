@@ -2,6 +2,9 @@ import { MigrationFunction, runMigration } from "contentful-migration";
 import dotenv from "dotenv";
 dotenv.config();
 
+const REGEX_URL =
+  "^(https?:\\/\\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(\\/[^\\s]*)?$";
+
 const migrationFunction: MigrationFunction = (migration, context) => {
   try {
     const trackContentType = migration.createContentType("track", {
@@ -55,8 +58,7 @@ const migrationFunction: MigrationFunction = (migration, context) => {
       validations: [
         {
           regexp: {
-            pattern:
-              "^(https?:\\/\\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(\\/[^\\s?#]+\\.(jpg|jpeg|png|gif|webp|svg))(\\?[^\\s]*)?$",
+            pattern: REGEX_URL,
             flags: "i",
           },
           message: "Must be a valid image URL",
@@ -72,8 +74,7 @@ const migrationFunction: MigrationFunction = (migration, context) => {
       validations: [
         {
           regexp: {
-            pattern:
-              "^(https?:\\/\\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(\\/[^\\s]*)?$",
+            pattern: REGEX_URL,
             flags: "i",
           },
           message: "Must be a valid URL",

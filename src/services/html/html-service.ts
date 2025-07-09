@@ -71,11 +71,12 @@ export class HtmlService implements Html {
             })
             .join("")}
         </ol>
-      <main>
+      </main>
       <style>
         .chips-wrap {
           padding-top: 20px;
           display: flex;
+          flex-wrap: wrap;
           gap: 10px;
         }
 
@@ -184,9 +185,9 @@ export class HtmlService implements Html {
         .toString()
         .padStart(2, "0");
 
-    const svgIconId = track.url.includes("youtube")
-      ? "icon-youtube"
-      : "icon-soundcloud";
+    const svgIconId = `icon-${Object.values(TrackSource)
+      .find((source) => track.url.includes(source))
+      ?.toLowerCase()}`;
 
     return `
       <a class="wrap link" href="${track.url}" target="_blank">

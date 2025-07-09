@@ -350,6 +350,15 @@
       "description": "",
       "url": "https://www.youtube.com/watch?v=dkxmHOM5oWU",
       "duration": 3991
+    },
+    {
+      "created_at": "2025-07-07",
+      "artwork_url": "https://img.youtube.com/vi/uC263kuTFVo/mqdefault.jpg",
+      "id": "uC263kuTFVo",
+      "title": "Chill-out & Electronic Music World by STUDITSKY - L'atelier de Musique Ep034",
+      "description": "Perfect mix for relaxing time from Dmitry Studitsky - DJ and producer, released on many labels, curator of Moscow project called Lobby.\nIn what atmosphere do you listen to our new mix on L'atelier de Musique? - share in the comments!\nDJ equipment we use:\n– Technics SL-1200MK2 Turntable\n– Ecler Warm2 Mixer\n– ZOOM H6",
+      "url": "https://www.youtube.com/watch?v=uC263kuTFVo",
+      "duration": 3725
     }
   ],
   "groups": [
@@ -411,6 +420,46 @@
         "description": "",
         "url": "https://www.youtube.com/live/xyIpo_EVP5w",
         "duration": 3069
+      }
+    ],
+    [
+      {
+        "created_at": "2025-01-22",
+        "artwork_url": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84f03ad90fb4788a60efb91278",
+        "id": "581qJ20vxRfJm33q4bEFiQ",
+        "title": "Found Sound #2 Dima Studitsky",
+        "description": "playlist by Found Record Store & Pizzeria",
+        "url": "https://open.spotify.com/playlist/581qJ20vxRfJm33q4bEFiQ",
+        "duration": 8100
+      },
+      {
+        "created_at": "2025-01-22",
+        "artwork_url": "https://avatars.yandex.net/get-music-user-playlist/11407805/1748634270.1002.98483/300x300?1737363055549",
+        "id": "58bd561b-7d3e-de32-b30e-1a06c2ef8bb8",
+        "title": "Found Sound #2 Dima Studitsky",
+        "description": "playlist by Found Record Store & Pizzeria",
+        "url": "https://music.yandex.ru/playlists/58bd561b-7d3e-de32-b30e-1a06c2ef8bb8",
+        "duration": 8100
+      }
+    ],
+    [
+      {
+        "created_at": "2021-03-26",
+        "artwork_url": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da84967e01f3fc31a82c75f51978",
+        "id": "62JvJn30H4qIPzslGDy2f2",
+        "title": "Поставь мне джаз. Vol. 7: Дима Студитский",
+        "description": "Jazzist Magazine",
+        "url": "https://open.spotify.com/playlist/62JvJn30H4qIPzslGDy2f2",
+        "duration": 8520
+      },
+      {
+        "created_at": "2021-03-26",
+        "artwork_url": "https://avatars.yandex.net/get-music-user-playlist/38125/1219363817.1033.69404/300x300?1616774405618",
+        "id": "8db19303-7fff-2c1c-9a11-fe762f32268a",
+        "title": "Поставь мне джаз. Vol. 7: Дима Студитский",
+        "description": "Jazzist Magazine",
+        "url": "https://music.yandex.ru/playlists/8db19303-7fff-2c1c-9a11-fe762f32268a",
+        "duration": 8520
       }
     ]
   ]
